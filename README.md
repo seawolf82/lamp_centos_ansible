@@ -1,4 +1,4 @@
-# proftpd_mysql_centos_ansible
+# lamp_centos_ansible
 
 
 This script install on centos7 apache with mariadb and php5.4 
