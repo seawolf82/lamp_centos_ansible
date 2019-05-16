@@ -1,0 +1,11 @@
+---
+
+
+# MariaDb Variables
+
+mysql_root_password: 'mysql_root'
+mysql_server_id: 1
+mysql_auto_increment_increment: 1
+mysql_auto_increment_offset: 1
+
+

@@ -1,0 +1,8 @@
+- name: Terminate running apache, mysql and remove all files
+  hosts: lamp-servers
+  remote_user: root
+  roles:
+    - apache_uninstall
+    - mariadb_uninstall
+    - php5.4_uninstall
+

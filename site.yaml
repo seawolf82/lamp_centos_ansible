@@ -1,0 +1,11 @@
+
+- name: Install apache, mysql and php files
+  hosts: lamp-servers
+  remote_user: root
+  roles:
+    - common
+    - php5.4
+    - apache
+    - mariadb
+
+
