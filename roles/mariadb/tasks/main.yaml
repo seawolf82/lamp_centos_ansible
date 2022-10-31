@@ -9,8 +9,22 @@
     - mariadb-server
     - mariadb
     - python2-PyMySQL
+    - python36-PyMySQL
     - MySQL-python
     - libsemanage-python
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "7" 
+  tags: mariadb
+
+- name: Install a list of MariaDB packages 
+  dnf:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - mariadb-server
+    - mariadb
+    - python3-PyMySQL
+    - python3-libsemanage
+  when: (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "8") or (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "9") 
   tags: mariadb
 
 

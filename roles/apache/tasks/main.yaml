@@ -1,8 +1,17 @@
 ---
 
+
 - name: Install httpd  
   yum:
     name: httpd
+  when: (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
+  tags: apache
+
+
+- name: Install httpd  
+  dnf:
+    name: httpd
+  when: (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "8") or (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "9")
   tags: apache
 
 

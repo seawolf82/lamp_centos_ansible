@@ -4,5 +4,5 @@
   roles:
     - apache_uninstall
     - mariadb_uninstall
-    - php5.4_uninstall
+    - php_uninstall
 

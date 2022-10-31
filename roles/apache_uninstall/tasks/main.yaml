@@ -4,24 +4,28 @@
     systemd:
       state: stopped
       name: httpd
-    when: ansible_os_family == "RedHat"  
     tags: apache 
   
   - name: disable httpd service
     systemd:
       name: httpd
       enabled: false
-    when: ansible_os_family == "RedHat"  
     tags: apache 
  
+  - name: Remove httpd
+    dnf:
+      name: httpd
+      state: absent
+    when: (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "8") or (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "9")  
+    tags: apache 
+  
   - name: Remove httpd
     yum:
       name: httpd
       state: absent
-    when: ansible_os_family == "RedHat"  
+    when: (ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")  
     tags: apache 
-  
- 
+
   - name: removing firewall rules http for httpd service
     firewalld:
       service: http
@@ -30,7 +34,6 @@
     notify: Reloading firewalld rules
     tags: apache 
   
-
   - name: removing firewall rules https for httpd service
     firewalld:
       service: https
